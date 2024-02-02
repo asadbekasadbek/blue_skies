@@ -127,6 +127,60 @@ trait TelegramBotHelper
         return response()->json($response);
     }
 
+    public static function SendTelegramCopyMessage(
+        int|string $chatId,
+        int        $messageThreadId,
+        int|string $fromChatId,
+        string     $messageId,
+        ?string    $caption,
+        string     $parseMode = 'HTML',
+        ?array     $captionEntities,
+        array|int  $messageIds,
+        ?bool      $disable_notification = null,
+        ?bool      $protectContent = null,
+        $replyParameters =null,
+        $reply_markup = null
+    ): JsonResponse
+    {
+        $url = self::Url('copyMessage');
+        $params = [
+            'chat_id' => $chatId,
+            'message_thread_id' => $messageThreadId,
+            'from_chat_id' => $fromChatId,
+            'message_ids' => $messageIds,
+            'parse_mode' => $parseMode,
+            'message_id' => $messageId
+        ];
+
+
+           if ($caption !== null) {
+               $params['reply_markup'] = $caption;
+           }
+
+         if ($caption !== null) {
+             $params['reply_parameters'] = $caption;
+         }
+        if ($caption !== null) {
+            $params['caption'] = $caption;
+        }
+
+
+        if ($captionEntities !== null) {
+            $params['caption_entities'] = json_encode($captionEntities);
+        }
+
+        if ($disable_notification !== null) {
+            $params['disable_notification'] = $disable_notification;
+        }
+
+        if ($protectContent !== null) {
+            $params['protect_content'] = $protectContent;
+        }
+
+        $response = Http::post($url, $params)->json();
+
+        return response()->json($response);
+    }
 
     public static function SendTelegramCopyMessages(
         int|string $chatId,
@@ -2625,9 +2679,10 @@ trait TelegramBotHelper
 
     public static function stopTelegramPoll(
         int|string $chatId = null,
-        ?int $messageId = null,
-         $replyMarkup = null
-    ): JsonResponse {
+        ?int       $messageId = null,
+                   $replyMarkup = null
+    ): JsonResponse
+    {
 
         // URL of the API endpoint
         $url = self::Url('stopPoll');
@@ -2653,9 +2708,10 @@ trait TelegramBotHelper
     }
 
     public static function deleteTelegramMessage(
-        int|string $chatId ,
-        int $messageId
-    ): JsonResponse {
+        int|string $chatId,
+        int        $messageId
+    ): JsonResponse
+    {
 
         // URL of the API endpoint
         $url = self::Url('deleteMessage');
@@ -2674,20 +2730,19 @@ trait TelegramBotHelper
 
     public static function deleteTelegramMessages(
         int|string $chatId,
-        array $messageIds
-    ): JsonResponse {
-            $url = self::Url('deleteMessages');
+        array      $messageIds
+    ): JsonResponse
+    {
+        $url = self::Url('deleteMessages');
 
-            $params = [
-                'chat_id' => $chatId,
-                'message_ids' => $messageIds
-            ];
+        $params = [
+            'chat_id' => $chatId,
+            'message_ids' => $messageIds
+        ];
 
 
-            return response()->json(Http::asMultipart()->post($url, $params));
+        return response()->json(Http::asMultipart()->post($url, $params));
     }
-
-
 
 
     //<-- new up -->

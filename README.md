@@ -70,7 +70,108 @@ public static function SendTelegramMessage(
     ): JsonResponse
 ```
 
+https://core.telegram.org/bots/api#forwardmessage `forwardMessage`
+<br/>
+SendTelegramMessage SendTelegramForwardMessage:
+```php
+ public static function SendTelegramForwardMessage(
+        int|string $chatId,
+        int        $messageThreadId = null,
+        int|string $fromChatId = null,
+        ?bool      $disableNotification = null,
+        ?bool      $protectContent = null,
+        int        $messageId
+    ): JsonResponse
+```
 
+https://core.telegram.org/bots/api#forwardmessages `forwardMessages`
+<br/>
+SendTelegramMessage SendTelegramForwardMessages:
+```php
+    public static function SendTelegramForwardMessages(
+        int|string $chatId,
+        int        $messageThreadId,
+        int|string $fromChatId,
+        array|int  $messageIds,
+        bool       $disable_notification = false,
+        bool       $protectContent = false
+    ): JsonResponse
+```
+
+
+https://core.telegram.org/bots/api#copymessage `copyMessage`
+<br/>
+SendTelegramMessage SendTelegramCopyMessage:
+```php
+      public static function SendTelegramCopyMessage(
+        int|string $chatId,
+        int        $messageThreadId,
+        int|string $fromChatId,
+        array|int  $messageIds,
+        ?bool      $disable_notification = null,
+        ?bool      $protectContent = null,
+        ?bool      $removeCaption = null
+    ): JsonResponse
+```
+
+https://core.telegram.org/bots/api#copymessages `copyMessages`
+<br/>
+SendTelegramMessage SendTelegramCopyMessages:
+```php
+      public static function SendTelegramCopyMessages(
+        int|string $chatId,
+        int        $messageThreadId,
+        int|string $fromChatId,
+        array|int  $messageIds,
+        ?bool      $disable_notification = null,
+        ?bool      $protectContent = null,
+        ?bool      $removeCaption = null
+    ): JsonResponse
+```
+SendTelegramPhoto
+
+
+https://core.telegram.org/bots/api#sendphoto `sendPhoto`
+<br/>
+SendTelegramMessage SendTelegramPhoto:
+```php
+   public function SendTelegramPhoto(
+        int|string $chatId,
+        ?int       $messageThreadId = null,
+        string     $photo,
+        ?string    $caption = null,
+        ?string    $parseMode = 'HTML',
+        ?array     $captionEntities = null,
+        bool       $hasSpoiler = null,
+        bool       $disableNotification = null,
+        ?bool      $protectContent = null,
+                   $replyParameters = null,
+                   $replyMarkup = null
+    ): JsonResponse
+```
+
+
+https://core.telegram.org/bots/api#sendaudio `sendAudio`
+<br/>
+SendTelegramMessage SendTelegramAudio:
+```php
+      public static function SendTelegramAudio(
+        int|string $chatId,
+        ?int       $messageThreadId = null,
+        string     $audio,
+        ?string    $caption = null,
+        ?string    $parseMode = 'HTML',
+        ?array     $captionEntities = null,
+        ?int       $duration = null,
+        ?string    $performer = null,
+        ?string    $title = null,
+        ?string    $thumbnail = null,
+        ?bool      $disableNotification = null,
+        ?bool      $protectContent = null,
+                   $replyParameters = null,
+                   $replyMarkup = null
+    ): JsonResponse
+```
 
 ## all methods are implemented
 
