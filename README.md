@@ -12,6 +12,7 @@
 <a href="https://packagist.org/packages/blue_skies/telegram-bot-helper">
     <img alt="Latest Stable Version" src="https://img.shields.io/github/v/release/asadbekasadbek/blue_skies.svg">
 </a>
+
 # Installation
 
 You can install the package via composer:
