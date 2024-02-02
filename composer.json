@@ -1,0 +1,54 @@
+{
+    "name": "blue_skies/telegram-bot-helper",
+    "description": "This is a blue_skies/telegram-bot-helper package that simplifies the development of telegram bots. It provides a convenient way to handle commands, messages, files, buttons, and webhooks",
+    "keywords": [
+        "blue_skies",
+        "telegram-bot-helper"
+    ],
+    "homepage": "https://github.com/blue_skies/telegram-bot-helper",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Asadbek",
+            "email": "aqswsw1@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0",
+        "illuminate/support": "^8.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "BlueSkies\\TelegramBotHelper\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BlueSkies\\TelegramBotHelper\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "BlueSkies\\TelegramBotHelper\\TelegramBotHelperServiceProvider"
+            ],
+            "aliases": {
+                "TelegramBotHelper": "BlueSkies\\TelegramBotHelper\\TelegramBotHelperFacade"
+            }
+        }
+    }
+}
