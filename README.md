@@ -33,17 +33,25 @@ TELEGRAM_BOT_TOKEN = telegram bot token
 ```
 
 ```php
-use nice\telegramBotHelper\Traits\TelegramBotHelper;
+use BlueSkies\TelegramBotHelper\Traits\TelegramBotHelper;
 
 class TestController extends Controller
 {
     use TelegramBotHelper;
     public  function index()
     {
-        self::SendTelegramMessage('chat_id','Test');
+        self::SendTelegramMessage('991027867','Test');
     }
 }
+
+
+
 ```
+```php
+Route::post('/telegram/message',[\App\Http\Controllers\TestController::class,'index']);
+```
+
+
 https://core.telegram.org/bots/api#sendmessage `sendMessage`
 <br/>
 SendTelegramMessage Parameters:
