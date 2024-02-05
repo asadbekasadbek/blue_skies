@@ -1591,6 +1591,8 @@ Route::controller(\App\Http\Controllers\TelegramWebhookController::class)->group
 #### write in controller
 
 ```php
+use BlueSkies\TelegramBotHelper\Traits\TelegramBotHelper;
+
 class TelegramWebhookController extends Controller
 {
     use TelegramBotHelper;
