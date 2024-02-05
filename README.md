@@ -138,6 +138,7 @@ Route::post('/telegram/message',[\App\Http\Controllers\TestController::class,'in
 <a style="font-size: 14pt " href="#stoppoll">#stopPoll</a><br/>
 <a style="font-size: 14pt " href="#deletemessage">#deleteMessage</a><br/>
 <a style="font-size: 14pt " href="#deletemessages">#deleteMessages</a><br/>
+<a style="font-size: 14pt " href="#webhooks">#Webhooks</a><br/>
 
 
 
@@ -1552,6 +1553,58 @@ SendTelegramMessageEntity Parameters:
     array $entities
     ): JsonResponse
 ```
+
+<div id="webhooks"></div>
+
+# Webhooks
+
+https://core.telegram.org/bots/webhooks
+Telegram Bot API supports webhook. If you set webhook for your bot, Telegram will send updates to the specified url
+## The fastest way
+change it to yours `bot_token` `your_url`
+
+putting this in the search bar
+
+https://api.telegram.org/bot_token/setwebhook?url=your_url
+
+#### example
+
+`https://api.telegram.org/bot1310530208:AAHAKEpv_E9k3rWc09G7Z0rJVcKHGEBqo6c/setwebhook?url=https://example.com/api/telegram-bot/handle`
+
+#### get the answer
+
+```json
+{"ok": true, "result" :true, "description": "Webhook is already set"}
+```
+#### create a controller
+
+```bash
+   php artisan make:controller TelegramWebhookController
+```
+#### add to `api.php` file
+```php
+
+Route::controller(\App\Http\Controllers\TelegramWebhookController::class)->group(function () {
+    Route::post('/telegram-bot/handle', 'handle');
+});
+```
+#### write in controller
+
+```php
+class TelegramWebhookController extends Controller
+{
+    use TelegramBotHelper;
+    public function handle(Request $request)
+    {
+        $bodyContent = $request->getContent();
+        return self::SendTelegramMessage('chat_id',"<pre>$bodyContent</pre>");
+    }
+}
+```
+
+#### write a chat something
+
+
 
 
 
