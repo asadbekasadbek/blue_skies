@@ -16,7 +16,7 @@ trait TelegramBotHelper
 
     public static function SendTelegramMessage(
         int|string $chatId,
-        string     $message,
+        string     $text,
         ?string    $messageThreadId = null,
         string     $parseMode = 'HTML',
         ?array     $entities = null,
@@ -29,7 +29,7 @@ trait TelegramBotHelper
     {
         $params = [
             'chat_id' => $chatId,
-            'text' => $message,
+            'text' => $text,
             'parse_mode' => $parseMode,
         ];
 
@@ -138,8 +138,8 @@ trait TelegramBotHelper
         array|int  $messageIds,
         ?bool      $disable_notification = null,
         ?bool      $protectContent = null,
-        $replyParameters =null,
-        $reply_markup = null
+                   $replyParameters = null,
+                   $reply_markup = null
     ): JsonResponse
     {
         $url = self::Url('copyMessage');
@@ -153,13 +153,13 @@ trait TelegramBotHelper
         ];
 
 
-           if ($caption !== null) {
-               $params['reply_markup'] = $caption;
-           }
+        if ($caption !== null) {
+            $params['reply_markup'] = $caption;
+        }
 
-         if ($caption !== null) {
-             $params['reply_parameters'] = $caption;
-         }
+        if ($caption !== null) {
+            $params['reply_parameters'] = $caption;
+        }
         if ($caption !== null) {
             $params['caption'] = $caption;
         }
@@ -555,7 +555,7 @@ trait TelegramBotHelper
                    $replyMarkup = null
     ): JsonResponse
     {
-        $url = self::Url('sendVideo');
+        $url = self::Url('sendAnimation');
 
         if (!filter_var($animation, FILTER_VALIDATE_URL)) {
             $animation = fopen($animation, 'r');
@@ -834,7 +834,7 @@ trait TelegramBotHelper
                    $replyMarkup = null,
     ): JsonResponse
     {
-        $url = self::Url('sendMediaGroup');
+        $url = self::Url('sendLocation');
 
         $params = [
             'chat_id' => $chatId,
@@ -2745,21 +2745,6 @@ trait TelegramBotHelper
     }
 
 
-    //<-- new up -->
-
-    public static function SendTelegramReply(string $chatId, string $message, string $replyId, string $parseMode = 'HTML'): JsonResponse
-    {
-        $url = self::Url('sendMessage');
-        $response = Http::post($url, [
-            'chat_id' => $chatId,
-            'text' => $message,
-            'reply_to_message_id' => $replyId,
-            'parse_mode' => $parseMode
-        ])->json();
-        return response()->json($response);
-
-    }
-
 
     public static function SendDeleteTelegramMessage(string $chatId, string $messageId, ?int $seconds = 0): JsonResponse
     {
@@ -2772,15 +2757,6 @@ trait TelegramBotHelper
         return response()->json($response);
     }
 
-    public static function SendTelegramMessageEntity(string $chatId, string $messageText, array $entities): JsonResponse
-    {
-        $url = self::Url('sendMessage');
-        $response = Http::post($url, [
-            'chat_id' => $chatId,
-            'text' => $messageText,
-            'entities' => json_encode($entities),
-        ]);
-        return response()->json($response);
-    }
+
 
 }
