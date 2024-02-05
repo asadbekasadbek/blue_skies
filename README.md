@@ -40,7 +40,7 @@ class TestController extends Controller
     use TelegramBotHelper;
     public  function index()
     {
-        self::SendTelegramMessage('chat_id','Test');
+      return  self::SendTelegramMessage('chat_id','Test');
     }
 }
 
