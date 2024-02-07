@@ -1,9 +1,13 @@
 {
     "name": "blue_skies/telegram-bot-helper",
-    "description": "This is a blue_skies/telegram-bot-helper package that simplifies the development of telegram bots. It provides a convenient way to handle commands, messages, files, buttons, and webhooks",
+    "description": "Telegram bot integration with laravel",
     "keywords": [
-        "blue_skies",
-        "telegram-bot-helper"
+        "telegram",
+        "telegram bot",
+        "telegram bot api",
+        "telegram php",
+        "laravel telegram",
+        "laravel"
     ],
     "homepage": "https://github.com/blue_skies/telegram-bot-helper",
     "license": "MIT",
